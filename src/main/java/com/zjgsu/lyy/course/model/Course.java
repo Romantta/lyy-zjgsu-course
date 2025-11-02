@@ -1,0 +1,115 @@
+package com.zjgsu.lyy.course.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "courses",
+        uniqueConstraints = @UniqueConstraint(columnNames = "code"))
+public class Course {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+
+    @Column(name = "code", nullable = false, unique = true, length = 50)
+    private String code;
+
+    @Column(name = "title", nullable = false, length = 200)
+    private String title;
+
+    @Embedded
+    private Instructor instructor;
+
+    @Embedded
+    private ScheduleSlot schedule;
+
+    @Column(name = "capacity", nullable = false)
+    private Integer capacity;
+
+    @Column(name = "enrolled", nullable = false)
+    private Integer enrolled = 0;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    // 检查是否还有空位
+    public boolean hasAvailableSeats() {
+        return enrolled < capacity;
+    }
+
+    // 获取剩余空位数
+    public int getAvailableSeats() {
+        return capacity - enrolled;
+    }
+
+    // Getter 和 Setter 方法
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+    public String getCode() {
+        return code;
+    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public Instructor getInstructor() {
+        return instructor;
+    }
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+    public ScheduleSlot getSchedule() {
+        return schedule;
+    }
+    public void setSchedule(ScheduleSlot schedule) {
+        this.schedule = schedule;
+    }
+    public Integer getCapacity() {
+        return capacity;
+    }
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+    public Integer getEnrolled() {
+        return enrolled;
+    }
+    public void setEnrolled(Integer enrolled) {
+        this.enrolled = enrolled;
+    }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+}

@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: course-system
+  main:
+    allow-circular-references: true
+
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/course
+    username: root
+    password: Lyy20041123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 120000
+
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    open-in-view: false
+
+  # 启用 SQL 初始化
+  sql:
+    init:
+      mode: always  # 总是执行初始化脚本
+      platform: mysql  # 指定数据库平台
+      continue-on-error: true
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+
+# 日志配置
+logging:
+  level:
+    com.zjgsu.lyy.course: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.springframework.jdbc.datasource.init: DEBUG  # 添加SQL初始化日志

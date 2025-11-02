@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/course
+    username: root
+    password: Lyy20041123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  # JPA配置 - 使用update避免并发问题
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        show-sql: true
+    open-in-view: false
+
+  # 禁用自动SQL初始化
+  sql:
+    init:
+      mode: never
+
+# 测试环境日志配置
+logging:
+  level:
+    com.zjgsu.lyy.course: INFO
+    org.springframework.web: INFO
