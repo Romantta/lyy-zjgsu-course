@@ -85,13 +85,13 @@ Content-Type: application/json
     "capacity": 70
 }
 ```
+Content-Type: application/json
+
+
 
 ### 1.3 创建课程3 - 大学物理
 ```http
-POST http://localhost:8080/api/courses
-Content-Type: application/json
-
-{
+POST http://localhost:8080/api/courses{
     "code": "PH101",
     "title": "大学物理",
     "instructor": {

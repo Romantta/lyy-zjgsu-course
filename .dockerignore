@@ -1,0 +1,33 @@
+# 构建输出
+target/
+build/
+
+# 版本控制
+.git/
+.gitignore
+\
+# IDE文件
+.idea/
+*.iml
+.vscode/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 文档
+*.md
+*.pdf
+
+# 日志文件
+*.log
+logs/
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# 其他Docker文件
+docker-compose.override.yml
+Dockerfile.bak

@@ -46,3 +46,9 @@ logging:
     org.springframework.web: INFO
     org.hibernate.SQL: DEBUG
     org.springframework.jdbc.datasource.init: DEBUG  # 添加SQL初始化日志
+
+  # Docker 环境配置（具体配置在 application-docker.yml 中）
+  spring:
+    config:
+      activate:
+        on-profile: docker
