@@ -29,15 +29,12 @@ cd course1.1.0
 
 # 构建 Docker 镜像
 docker compose build
-
-# 或者强制重新构建（不使用缓存）
-docker compose build --no-cache
 ```
 
 ### 2. 启动服务
 
 ```bash
-# 启动所有服务（后台运行）
+# 启动所有服务
 docker compose up -d
 
 # 查看服务状态
@@ -47,7 +44,7 @@ docker compose ps
 ### 3. 验证部署
 
 ```bash
-# 等待应用完全启动（约30秒）
+# 等待应用完全启动
 sleep 30
 
 # 测试健康检查
